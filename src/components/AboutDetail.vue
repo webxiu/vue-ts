@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Emit, Watch } from "vue-property-decorator";
-import { emit } from "cluster";
+// import { emit } from "cluster";
 interface Feature {
   id: number;
   name: string;
@@ -25,8 +25,8 @@ export default class AboutDetail extends Vue {
 
   // watch监听info的变化
   @Watch("listData", { deep: true })
-  onUserChange(newVal, oldVal) {
-    alert('新值:'+JSON.stringify(newVal) +'\n旧值:'+ JSON.stringify(oldVal));
+  onUserChange(newVal:any, oldVal:any) {
+    console.log('新值:'+JSON.stringify(newVal) +'\n旧值:'+ JSON.stringify(oldVal));
   }
 
   // 写事件函数

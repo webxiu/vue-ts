@@ -20,13 +20,15 @@ interface Result<T> {
 }
 function getData<T>(): Promise<Result<T>> {
   // 模拟数据
-  let data: any = [{ id: 1, name: "路附近啊" }, { id: 2, name: "法律界阿拉" }];
+  let data: any = [
+    { id: 1, name: "路附近啊" },
+    { id: 2, name: "法律界阿拉" }
+  ];
   return Promise.resolve<Result<T>>({ data });
 }
 @Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
-  private features: Feature[];
   constructor() {
     super();
     // this.features[0].id
@@ -39,8 +41,8 @@ export default class HelloWorld extends Vue {
   async mounted() {
     // this.features = (await getData<Feature[]>()).data;
     const res = await axios.get<Feature[]>("/api/getFeature");
-    alert(JSON.stringify(res))
-    this.listData = res.data
+    console.log("测试接口:", res);
+    this.listData = res.data;
   }
 
   // 写函数
