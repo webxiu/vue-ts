@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <p>总数: {{ count }}</p>
     <input type="text" @keyup.enter="sendData($event)" />
     <p v-for="(item,index) in listData" :key="index">{{item.id + '==' + item.name}}</p>
   </div>
@@ -18,14 +19,16 @@ interface Feature {
 interface Result<T> {
   data: T;
 }
-function getData<T>(): Promise<Result<T>> {
-  // 模拟数据
-  let data: any = [
-    { id: 1, name: "路附近啊" },
-    { id: 2, name: "法律界阿拉" }
-  ];
-  return Promise.resolve<Result<T>>({ data });
-}
+// 模拟数据
+// function getData<T>(): Promise<Result<T>> {
+//   let data: any = [
+//     { id: 1, name: "路附近啊" },
+//     { id: 2, name: "法律界阿拉" }
+//   ];
+//   return Promise.resolve<Result<T>>({ data });
+// }
+
+
 @Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
@@ -33,10 +36,7 @@ export default class HelloWorld extends Vue {
     super();
     // this.features[0].id
   }
-  listData: Feature[] = [
-    { id: 1, name: "路附近啊" },
-    { id: 2, name: "法律界阿拉" }
-  ];
+  listData: Feature[] = [];
 
   async mounted() {
     // this.features = (await getData<Feature[]>()).data;
@@ -47,8 +47,7 @@ export default class HelloWorld extends Vue {
 
   // 写函数
   sendData(e: any) {
-    // console.log(e);
-    this.listData.push({ id: 1, name: e.target.value });
+    this.listData.push({ id: this.listData.length + 1, name: e.target.value });
     e.target.value = "";
   }
 

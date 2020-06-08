@@ -4,8 +4,8 @@ module.exports = {
         before(app) {
             app.get('/api/getFeature', (req, res) => {
                 res.json([
-                    { id: 1, name: "路附近啊" },
-                    { id: 2, name: "测试的返回数据" }
+                    { id: 1, name: "接口配置数据1" },
+                    { id: 2, name: "接口配置的返回数据" }
                 ])
             })
 
